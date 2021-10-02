@@ -1,23 +1,27 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import DisplayPDF from './DisplayPDF';
 
 function App() {
+   const [b64string, setB64string] = useState();
+   const handleChange = (e) => {   
+    const file = e.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = function(newEvent) {
+      const binaryData = newEvent.target.result;
+      console.log(binaryData)
+      setB64string(binaryData)
+    }
+    reader.readAsDataURL(file);
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h2>Online PDF viewer</h2>
+      <div className="inp">
+        <input type="file" onChange={handleChange}/>
+        <DisplayPDF pdf={b64string} />
+      </div>
     </div>
   );
 }
