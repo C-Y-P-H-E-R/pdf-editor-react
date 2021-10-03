@@ -23,10 +23,13 @@ function DisplayPDF({pdf}) {
             {
                 (pdf !== undefined) ? <p style={{"color": "white"}}>Page {pageNumber} of {numPages}</p> : ""
             }
-            <div className="page-navigation">
-                <button className="prev" onClick={() => setPageNumber(pageNumber - 1)}>Prev page</button>
-                <button className="next" onClick={() => setPageNumber(pageNumber + 1)}>Next page</button>
-            </div>
+            {
+                (pdf !== undefined) ? <div className="page-navigation">
+                                        <button className="prev" onClick={() => setPageNumber(pageNumber - 1)}>Prev page</button>
+                                        <button className="next" onClick={() => setPageNumber(pageNumber + 1)}>Next page</button>
+                                    </div>
+                                    : ""
+            }
         </div>
     )
 }
