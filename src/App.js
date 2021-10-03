@@ -17,10 +17,14 @@ function App() {
   }
   return (
     <div className="App">
-      <h2>Online PDF viewer</h2>
-      <div className="inp">
-        <input type="file" onChange={handleChange}/>
-        <DisplayPDF pdf={b64string} />
+      <div className="wrapper">
+        <div className="inp">
+          <label htmlFor="file-upload" className="fu-label">
+            Upload pdf
+          </label>
+          <input id="file-upload" type="file" onChange={handleChange}/>
+          <DisplayPDF pdf={b64string} />
+        </div>
       </div>
     </div>
   );
